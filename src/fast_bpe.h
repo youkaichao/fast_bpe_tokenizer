@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <cassert>
+#include <chrono>
 #include "base64.h"
 
 // the size of the character vocabulary
