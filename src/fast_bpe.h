@@ -138,6 +138,8 @@ public:
             // here comes a new char
             unsigned char x = text[i];
 
+            bool should_fall_back = false;
+
             // test if extending this char is a valid path in the tree
             if (tokens[root + x] != -1) {
                 // extending this char is a valid path
@@ -159,13 +161,17 @@ public:
                 // and then move to the next char of the last found token
                 if(i == text.size())
                 {
-                    result.push_back(last_found_token_id);
-                    i = last_found_position + 1;
+                    should_fall_back = true;
                 }
             }else{
                 // extending this char is not a valid path in the tree
                 // fall back to last_found_position + 1
                 assert (last_found_position != -1);
+                should_fall_back = true;
+            }
+
+            if(should_fall_back)
+            {
                 i = last_found_position + 1;
                 result.push_back(last_found_token_id);
 
