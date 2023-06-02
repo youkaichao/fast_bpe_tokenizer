@@ -41,8 +41,8 @@ This implementation is at least 10x faster than `tiktoken`!
 With a given vocabulary, there might be many different ways to encode the same string. For example, if the vocabulary contains "a"/"b"/"ab", then the string "ab" can be tokenized as a single token "ab", or it can be tokenized as two tokens "a" and "b".
 
 There are two possible ways to resolve such ambiguity:
-- Maximum Prefix Encoding: Choose the first token with max-length ("ab" in this case).
-- Maximum Priority Encoding: Choose the first token with max-priority (i.e., the least token id. in this case, the token with max priority is "a").
+- Maximum Prefix Encoding: Choose the first token with max-length ("ab" in this case). This leads to fewer tokens, and faster model inference.
+- Maximum Priority Encoding: Choose the first token with max-priority (i.e., the least token id. in this case, the token with max priority is "a"). This favors frequent tokens, and might lead to better textual understanding, at the cost of more tokens and slower model inference.
 
 This implementation follows a strict maximum prefix encoding. Maximum Priority Encoding can also be easily implemented.
 
