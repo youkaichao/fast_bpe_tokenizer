@@ -1,6 +1,34 @@
 # fast_bpe_tokenizer
 fast bpe tokenizer, simple to understand, easy to use
 
+# Usage
+
+Compile: `g++ -O3 src/*.cpp -o fast_bpe_tokenizer`
+Usage: `fast_bpe_tokenizer <tokenizer file> <input file> <output file>`
+
+Then, `fast_bpe_tokenizer` will read from `<tokenizer file>` (with extension `.tiktoken`), and use it to tokenize `<input file>`. The output is stored in `<output file>`.
+
+The program prints the estimated speed. On my laptop, it prints:
+```text
+Total time: 108548753 ns
+Total bytes: 3158163 bytes
+Speed: 0.0290944 GB/s
+```
+
+That is to say, it achieves 29.0 MB/s encoding speed.
+
+You can use `python test.py` to test the correctness of tokenization. It checks if decoding with the tokenization matches the original text.
+
+You can also use `python test_speed_tiktoken.py` to test the speed of `tiktoken`. On my laptop, it prints:
+```text
+num_threads: 1, num_bytes: 3158163
+tiktoken        0.002736707433478578 GB/s
+```
+
+That is to say, `tiktoken` achieves 2.7 MB/s encoding speed.
+
+This implementation is 10x faster than `tiktoken`!
+
 # Resolving Ambiguity
 
 With a given vocabulary, there might be many different ways to encode the same string. For example, if the vocabulary contains "a"/"b"/"ab", then the string "ab" can be tokenized as a single token "ab", or it can be tokenized as two tokens "a" and "b".
@@ -52,3 +80,7 @@ token aaaa, id 29558
 The tokenization of aaaaa is [29558, 64]
 ```
 
+# Future work
+- Add support for special tokens
+- Add python wrappers
+- Add multi-threading support

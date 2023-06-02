@@ -1,12 +1,16 @@
 #include "fast_bpe.h"
 
 int main(int argc, char** argv) {
-    Tokenizer tokenizer("cl100k_base.tiktoken");
+    if (argc != 4) {
+        std::cout << "Usage: fast_bpe_tokenizer <tokenizer file> <input file> <output file>" << std::endl;
+        return 0;
+    }
+    Tokenizer tokenizer(argv[1]);
 
     // read input from a file, and dump the output to a file (one int per line)
-    std::ifstream file(argv[1]);
+    std::ifstream file(argv[2]);
     // open the output file for writing, clear original content
-    std::ofstream output_file("output.txt");
+    std::ofstream output_file(argv[3]);
 
     // add timer to timing the tokenization process
     auto start = std::chrono::high_resolution_clock::now();
