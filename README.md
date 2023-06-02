@@ -9,6 +9,10 @@ Usage: `fast_bpe_tokenizer <tokenizer file> <input file> <output file>`
 
 Then, `fast_bpe_tokenizer` will read from `<tokenizer file>` (with extension `.tiktoken`), and use it to tokenize `<input file>`. The output is stored in `<output file>`.
 
+A testcase is to tokenize the whole book of "War and Peace":
+
+`./fast_bpe_tokenizer data/cl100k_base.tiktoken data/warandpeace.txt output.txt`
+
 The program prints the estimated speed. On my laptop, it prints:
 
 ```text
@@ -17,7 +21,7 @@ Total bytes: 3158163 bytes
 Speed: 0.0290944 GB/s
 ```
 
-That is to say, it achieves 29.0 MB/s encoding speed.
+That is to say, it achieves 29.0 MB/s encoding speed on my laptop. On my Linux server, the speed is 52.7MB/s.
 
 You can use `python test.py` to test the correctness of tokenization. It checks if decoding with the tokenization matches the original text.
 
@@ -28,9 +32,9 @@ num_threads: 1, num_bytes: 3158163
 tiktoken        0.002736707433478578 GB/s
 ```
 
-That is to say, `tiktoken` achieves 2.7 MB/s encoding speed.
+That is to say, `tiktoken` achieves 2.7 MB/s encoding speed. Spuriously, on my Linux server, the speed is 1.3 MB/s, even slower than my laptop.
 
-This implementation is 10x faster than `tiktoken`!
+This implementation is at least 10x faster than `tiktoken`!
 
 # Resolving Ambiguity
 
