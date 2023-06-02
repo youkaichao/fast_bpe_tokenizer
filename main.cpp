@@ -5,6 +5,7 @@ int main() {
 
     // read input from a file, and dump the output to a file (one int per line)
     std::ifstream file("input.txt");
+    // open the output file for writing, clear original content
     std::ofstream output_file("output.txt");
     std::string line;
     while (std::getline(file, line)) {

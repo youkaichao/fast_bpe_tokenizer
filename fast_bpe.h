@@ -133,51 +133,47 @@ public:
         int last_found_token_id = -1;
 
         int i = 0;
-        while (i <= text.size())
+        while (i < text.size())
         {
-            unsigned char x;
-            if(i == text.size())
-            {
-                x = 0;
-            }else{
-                x = text[i];
-            }
-            if (tokens[root + x] == -1 || i == text.size()) {
-                if (root_token_id == -1)
-                {
-                    // fall back to last_found_position
-                    assert (last_found_position != -1);
-                    i = last_found_position + 1;
-                    result.push_back(last_found_token_id);
+            // here comes a new char
+            unsigned char x = text[i];
 
-                    root = 0;
-                    root_token_id = -1;
-                    last_found_position = -1;
-                    last_found_token_id = -1;
-                }
-                else{
-                    result.push_back(root_token_id);
-                    root = 0;
-                    root_token_id = -1;
-                    last_found_position = i;
-                    last_found_token_id = root_token_id;
-
-                    i++;
-
-                    if(i == text.size())
-                    {
-                        break;
-                    }
-                }
-            }else{
+            // test if extending this char is a valid path in the tree
+            if (tokens[root + x] != -1) {
+                // extending this char is a valid path
+                // go to the next node
                 root_token_id = token_ids[root + x];
                 root = tokens[root + x];
+
                 if(root_token_id != -1)
                 {
+                    // a token ends at position i
                     last_found_position = i;
                     last_found_token_id = root_token_id;
                 }
+
+                // go to the next char
                 i++;
+
+                // if this is the last char, then we should push the last found token
+                // and then move to the next char of the last found token
+                if(i == text.size())
+                {
+                    result.push_back(last_found_token_id);
+                    i = last_found_position + 1;
+                }
+            }else{
+                // extending this char is not a valid path in the tree
+                // fall back to last_found_position + 1
+                assert (last_found_position != -1);
+                i = last_found_position + 1;
+                result.push_back(last_found_token_id);
+
+                // start searching from the root again
+                root = 0;
+                root_token_id = -1;
+                last_found_position = -1;
+                last_found_token_id = -1;
             }
         }
         return std::move(result);
