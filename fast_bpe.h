@@ -157,11 +157,17 @@ public:
                 }
                 else{
                     result.push_back(root_token_id);
-                    i++;
                     root = 0;
                     root_token_id = -1;
                     last_found_position = i;
                     last_found_token_id = root_token_id;
+
+                    i++;
+
+                    if(i == text.size())
+                    {
+                        break;
+                    }
                 }
             }else{
                 root_token_id = token_ids[root + x];
