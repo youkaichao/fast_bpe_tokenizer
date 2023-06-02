@@ -22,6 +22,7 @@ int main(int argc, char** argv) {
         total_time += std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
 
         output_file << line << std::endl;
+        output_file << result.size() << std::endl;
         for (int i = 0; i < result.size(); i++) {
             output_file << result[i] << std::endl;
         }
