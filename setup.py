@@ -30,6 +30,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires = [
-        'pybind11'
+        'pybind11>=2.9'
     ]
 )

@@ -27,9 +27,15 @@ fast_bpe_tokenization   0.0321009567095709 GB/s
 
 That is to say, `fast_bpe_tokenization` achieves 32.0 MB/s encoding speed on my laptop. In contrast, `tiktoken` only achieves 2.8 MB/s.
 
-On my Linux server, the speed is 52.7MB/s.
+On my Linux server, the speed test prints:
 
-That is to say, `tiktoken` achieves 2.7 MB/s encoding speed. Spuriously, on my Linux server, the speed is 1.3 MB/s, even slower than my laptop.
+```text
+num_threads: 1, num_bytes: 3158163
+tiktoken 	0.0013368014069854459 GB/s
+fast_bpe_tokenization 	0.027368681306682224 GB/s
+```
+
+Spuriously, on my Linux server, `tiktoken` is slower than my laptop.
 
 This implementation is at least 10x faster than `tiktoken`!
 
