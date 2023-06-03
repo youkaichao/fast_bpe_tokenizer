@@ -1,3 +1,6 @@
+#ifndef FAST_BPE_H_1234567890
+#define FAST_BPE_H_1234567890
+
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -187,3 +190,5 @@ public:
         return std::move(result);
     }
 };
+
+#endif // FAST_BPE_H_1234567890
