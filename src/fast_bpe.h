@@ -87,7 +87,7 @@ public:
     }
 
     // encode a string into a vector of token ids
-    std::vector<int> encode(std::string text) const
+    std::vector<int> encode(const std::string& text) const
     {
         std::vector<int> result;
 
