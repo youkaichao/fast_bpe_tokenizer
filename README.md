@@ -90,7 +90,17 @@ token aaaa, id 29558
 The tokenization of aaaaa is [29558, 64]
 ```
 
+# Understanding the details of tiktoken
+
+This implementation is written when I try to understand the details of `tiktoken`. The tutorial can be found in the `tiktoken_explained.ipynb`. It is interesting to find that my implementation turns out to be much faster than the `tiktoken` implementation.
+
+# Acknowledgement
+
+The base64 decoding in C++ comes from https://github.com/ReneNyffenegger/cpp-base64 .
+
+This repository follows MIT License. Feel free to use and modify the code.
+
 # Future work
-- Add support for special tokens
-- Add python wrappers
-- Add multi-threading support
+[] Add support for special tokens
+[x] Add python wrappers
+[] Add multi-threading support
