@@ -3,7 +3,7 @@ fast bpe tokenizer, simple to understand, easy to use
 
 # Usage
 
-Install: `pip install -e . -vvv`
+Install: `pip install pybind11 && pip install -e . -vvv`
 
 Usage:
 
