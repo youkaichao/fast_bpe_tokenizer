@@ -101,6 +101,7 @@ The base64 decoding in C++ comes from https://github.com/ReneNyffenegger/cpp-bas
 This repository follows MIT License. Feel free to use and modify the code.
 
 # Future work
-[] Add support for special tokens
-[x] Add python wrappers
-[] Add multi-threading support
+
+- [ ] Add support for special tokens
+- [x] Add python wrappers
+- [ ] Add multi-threading support
