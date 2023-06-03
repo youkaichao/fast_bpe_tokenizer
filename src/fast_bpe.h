@@ -25,42 +25,6 @@ private:
     std::vector<int> tokens;
     std::vector<int> token_ids;
 
-    // a function to peal off the longest token from a certain position, return a pair of (token_id, length)
-    std::pair<int, int> peal_off(const std::string& text, int start) const{
-        int root = 0;
-        int root_token_id = -1;
-        int last_found = start -1;
-        int last_found_id = -1;
-        for (int i = start; i < text.size(); i++) {
-            unsigned char x = text[i];
-            if (tokens[root + x] == -1) {
-                if (root_token_id == -1)
-                {
-                    return std::make_pair(last_found_id, last_found - start + 1);
-                }
-                else{
-                    last_found = i;
-                    last_found_id = root_token_id;
-                }
-            }
-            root_token_id = token_ids[root + x];
-            if(root_token_id != -1)
-            {
-                last_found = i;
-                last_found_id = root_token_id;
-            }
-            root = tokens[root + x];
-        }
-        if (root_token_id != -1)
-        {
-            return std::make_pair(root_token_id, text.size() - start);
-        }else{
-            std::cout << "Error: token not found" << std::endl;
-            // out-of-vocabulary error, so we can safely return this pair
-            return std::make_pair(last_found_id, last_found - start + 1);
-        }        
-    }
-
 public:
     Tokenizer(const std::string& filename) {
         // reserve enough space for these two vectors
