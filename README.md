@@ -1,6 +1,10 @@
 # fast_bpe_tokenizer
 fast bpe tokenizer, simple to understand, easy to use
 
+# :warning: Do not use this for production
+
+I created this implementation for the purpose of learning `tiktoken` tokenizer. Later I find that my implementation is a greedy one, like the one proposed in paper [Fast WordPiece Tokenization](https://aclanthology.org/2021.emnlp-main.160). The actual tokenization algorithm is illustrated at [here](https://guillaume-be.github.io/2021-09-16/byte_pair_encoding) with dynamic programming. I also consulted the author of `tiktoken`, who is kind enough to update an [educational implementation](https://github.com/openai/tiktoken#what-is-bpe-anyway) in `tiktoken` with visualization. Thank the community for kindly sharing these knowledge!
+
 # Usage
 
 Install: `pip install pybind11 && pip install -e . -vvv`
